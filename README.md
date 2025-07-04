@@ -1,8 +1,8 @@
-# Nginx Load Balancer Project
+### Nginx Load Balancer Project
 
 This project demonstrates a simple load balancing setup using **Nginx** to route traffic between two backend servers hosted on different VMs — one running **WordPress** and the other running a **Django** project with **Gunicorn**.
 
-## 🧠 Project Overview
+#### 🧠 Project Overview
 
 - **VM1 (Load Balancer & DNS)**
   - Nginx configured as a load balancer
@@ -14,7 +14,7 @@ This project demonstrates a simple load balancing setup using **Nginx** to route
   - Django application served via Gunicorn
   - Sample Django app deployed and started using a shell script
 
-## 🗂️ Repository Structure
+#### 🗂️ Repository Structure
 
 nginx_loadbalancer_project/
 
@@ -29,7 +29,7 @@ nginx_loadbalancer_project/
 └── loadbalancer/ # Nginx load balancer configuration
 
 
-## 🔧 Technologies Used
+#### 🔧 Technologies Used
 
 - **Nginx** – Load balancer
 - **Apache** – WordPress hosting
@@ -38,14 +38,14 @@ nginx_loadbalancer_project/
 - **BIND** – Local DNS server
 - **Ubuntu** – Operating System for all VMs
 
-## ⚙️ How It Works
+#### ⚙️ How It Works
 
 - The **load balancer** receives incoming traffic and forwards requests to either VM2 or VM3 based on Nginx upstream configuration.
 - Backend1 (VM2) serves the WordPress site using Apache and the Django application using Gunicorn.
 - Backend2 (VM3) serves the WordPress site using Apache and the Django application using Gunicorn.
 - DNS entries are manually configured for local resolution of each VM.
 
-## 🚀 Starting the Services
+#### 🚀 Starting the Services
 
 - On VM2 & VM3:
   ```bash
