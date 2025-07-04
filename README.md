@@ -22,13 +22,9 @@ nginx_loadbalancer_project/
 
 ├── backend1/ # Contains WordPress and Django project & Gunicorn for backend1
 
-│
 ├── backend2/ # Same as backend1
 
-│
 ├── dns/ # Custom DNS settings and zone files
-
-│
 
 └── loadbalancer/ # Nginx load balancer configuration
 
