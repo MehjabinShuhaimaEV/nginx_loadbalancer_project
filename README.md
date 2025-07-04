@@ -8,39 +8,30 @@ This project demonstrates a simple load balancing setup using **Nginx** to route
   - Nginx configured as a load balancer
   - DNS entries for resolving backend servers
 
-- **VM2 (Backend1)**
+- **VM2 (Backend1) & VM3 (Backend2)**
   - Apache web server
   - WordPress site deployed at `/var/www/wordpress`
   - Django application served via Gunicorn
   - Sample Django app deployed and started using a shell script
-
-- **VM3 (Backend2)**
-  - Django application served via Gunicorn
-  - Sample Django app deployed and started using a shell script
-  - Apache web server
-  - WordPress site deployed at `/var/www/wordpress`
 
 ## 🗂️ Repository Structure
 
 nginx_loadbalancer_project/
+
 │
-├── backend1/ # Contains WordPress and Django project for backend1
-│ ├── backend1_apache_conf/
-│ ├── backend1_djangoproject/
-│ ├── backend1_html/wordpress/
-│ └── start-gunicorn.sh
+
+├── backend1/ # Contains WordPress and Django project & Gunicorn for backend1
+
 │
-├── backend2/ # Contains WordPress and Django project for backend2
-│ ├── backend2_apache_conf/
-│ ├── backend2_djangoproject/
-│ ├── backend2_html/wordpress/
-│ └── start-gunicorn.sh
+├── backend2/ # Same as backend1
+
 │
 ├── dns/ # Custom DNS settings and zone files
+
 │
+
 └── loadbalancer/ # Nginx load balancer configuration
-├── loadb_nginx_sites/
-└── loadb_nginx.conf
+
 
 ## 🔧 Technologies Used
 
@@ -60,16 +51,13 @@ nginx_loadbalancer_project/
 
 ## 🚀 Starting the Services
 
-- On VM2:
+- On VM2 & VM3:
   ```bash
   sudo systemctl start apache2
   bash start-gunicorn.sh
-On VM3:
-```bash
-  sudo systemctl start apache2
-  bash start-gunicorn.sh
-On VM1:
-sudo systemctl restart nginx
+- On VM1:
+  ```bash
+  sudo systemctl restart nginx
 📌 Notes
 Ensure each VM can ping others and DNS resolves correctly.
 
