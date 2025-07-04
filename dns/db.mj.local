@@ -1,0 +1,25 @@
+;
+; BIND data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	ns1.mj.local. admin.mj.local. (
+			      2		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@	IN	NS	ns1.mj.local.
+ns1	IN	A	192.168.140.42
+
+bkend1  IN      A       192.168.140.77
+bkend2  IN      A       192.168.140.197
+loadbalancer	IN	A	192.168.140.42
+
+wp1	IN	A	192.168.140.77
+dj	IN	A	192.168.140.77
+wp2	IN	A	192.168.140.197
+dj2	IN	A	192.168.140.197
+
+wordp	IN	A	192.168.140.42
+django	IN	A	192.168.140.42

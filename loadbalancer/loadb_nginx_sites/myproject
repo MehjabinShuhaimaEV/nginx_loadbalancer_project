@@ -1,0 +1,27 @@
+
+    upstream bkend1 {
+        server wp1.mj.local;
+        server wp2.mj.local;
+    }
+
+    server {
+	listen 80;
+	server_name wordp.mj.local;
+        location / {
+            proxy_pass http://bkend1;
+        }
+    }
+
+    upstream bkend2 {
+        server dj.mj.local:8080;
+        server dj2.mj.local:8080;
+    }
+
+    server {
+        listen 8080;
+        server_name django.mj.local;
+        location / {
+            proxy_pass http://bkend2;
+        }
+    }
+

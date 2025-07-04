@@ -1,0 +1,275 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Account Form</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+        <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
+        <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/main.css">
+        <style>
+
+        *, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  bg-color:'green';
+  font-family: 'Nunito', sans-serif;
+  color: #384047;
+}
+
+form {
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 30px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0 4px 8px 0;
+}
+
+select {
+  padding: 6px;
+  height: 32px;
+  border-radius: 2px;
+}
+
+button {
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #3ac162;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+  margin-bottom: 10px;
+}
+
+fieldset {
+  margin-bottom: 30px;
+  border: none;
+}
+
+legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+label.light {
+  font-weight: 300;
+  display: inline;
+}
+
+.number {
+  background-color: #5fcf80;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  border-radius: 100%;
+}
+
+@media screen and (min-width: 480px) {
+
+  form {
+    max-width: 480px;
+  }
+
+}
+h5{
+text-align:center;
+}
+
+      </style>
+    </head>
+    <body bgcolor="yellow">
+
+    <nav class="navbar navbar-expand-lg navbar-dark "style="background-color: black;">
+        <a class="navbar-brand" href="/"><b>Fed bank</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+          <li class="nav-item active">
+
+              <a class="nav-link" href="{% url 'logout' %}">Logout <span class="sr-only">(current)</span></a>
+          </li>
+             {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+
+
+{% for msg in messages %}
+<h5>
+    {{msg}}
+    <p align="center"><a href="/">home</a></p>
+
+</h5>
+{% endfor %}
+
+      <div class="row">
+    <div class="col-md-12">
+<!--      <form action="index.html" method="post">-->
+          <form method="post" id="personForm" data-cities-url="{% url 'ajax_load_cities' %}">
+              {% csrf_token %}
+
+
+        <h1> Account Form</h1>
+
+        <fieldset>
+
+<!--          <legend><span class="number">1</span> Your Basic Info</legend>-->
+
+          <label>Name:</label>
+          <input type="text" id="name" name="user_name" placeholder="Name" required>
+
+          <label>Email:</label>
+          <input type="email" id="mail" name="user_email" placeholder="Email" required>
+
+          <label>Adress:</label>
+          <input type="text" id="password"  name="user_password" placeholder="Address" required>
+
+          <label>Age:</label>
+                <input type="number" name="age" required placeholder="age"><br>
+            <label>DOB:</label>
+                <input type="date" name="DOB" required placeholder="age"><br>
+
+            <label>Gender:</label>
+          <input type="radio" id="under_13" value="under_13" name="user_age"><label for="under_13" class="light">male</label><br>
+          <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">female</label>
+
+        </fieldset>
+        <fieldset>
+
+<!--          <legend><span class="number">2</span> Your Profile</legend>-->
+
+<!--         <label for="bio">Bio:</label>-->
+<!--          <textarea id="bio" name="user_bio"></textarea>-->
+
+
+
+         <label>Account Type:</label>
+          <select id="job" name="user_job">
+<!--            <optgroup label="Web">-->
+              <option value="frontend_developer">savings account</option>
+              <option value="php_developer">Current account</option>
+<!--              <option value="python_developer">Python Developer</option>-->
+<!--              <option value="rails_developer">Rails Developer</option>-->
+<!--              <option value="web_designer">Web Designer</option>-->
+<!--              <option value="wordpress_developer">Wordpress Developer</option>-->
+<!--            </optgroup>-->
+<!--            <optgroup label="Mobile">-->
+<!--              <option value="android_developer">Android Developer</option>-->
+<!--              <option value="ios_developer">IOS Developer</option>-->
+<!--              <option value="mobile_designer">Mobile Designer</option>-->
+<!--            </optgroup>-->
+<!--            <optgroup label="Business">-->
+<!--              <option value="business_owner">Business Owner</option>-->
+<!--              <option value="freelancer">Freelancer</option>-->
+<!--            </optgroup>-->
+          </select>
+          {{ form.as_p }}
+          <label>Materials provide:</label>
+          <input type="checkbox" id="development" value="interest_development" name="user_interest"><label class="light" for="development">Passbook</label><br>
+          <input type="checkbox" id="design" value="interest_design" name="user_interest"><label class="light" for="design">Debit card</label><br>
+          <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Credit card</label>
+
+         </fieldset>
+
+        <button type="submit">submit application</button>
+
+       </form>
+        </div>
+      </div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_district").change(function () {
+        const url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
+        const districtId = $(this).val();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'district_id': districtId       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+                $("#id_branch").html(data);  // replace the contents of the city input with the data that came from the server
+                /*
+
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (branch) {
+                    html_data += `<option value="${banch.id}">${branch.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_branch").html(html_data);
+
+                */
+            }
+        });
+
+    });
+</script>
+    </body>
+</html>
